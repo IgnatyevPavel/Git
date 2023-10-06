@@ -35,6 +35,10 @@ nothing to commit, working tree clean | ничего коммитировать,
 git config --global user.name "вводим своё имя из GitHub"
 git config --global user.email "вводим свою почту которую указывал при регистрации в GitHub"
 
+#### Чтобы проверить какой user.name и user.email
++ пишем:
+  + git config --global user.name для проверки user name 
+  + git config --global user.email для проверки user email
 #### Что такое Untracked files | неотслеживаемый файл?
 для примера создаём файл с даными в склонированном репозитории
 
