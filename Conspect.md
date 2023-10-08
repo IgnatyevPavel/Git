@@ -228,8 +228,8 @@ $ git branch
   main
 
 ```
-## Работа с папкой при смене веток
-+ Если создать файл `s_pay.txt` в ветке `Samsung_Pay`, закоммитить и запушить изменения, а затем переключиться на ветку `main`, то файл `s_pay.txt` не будет присутствовать. Однако, при возвращении на ветку `Samsung_Pay` файл снова будет доступен.
+## Что происходит в папке, когда меняешь ветки?
++ Если создать файл `s_pay.txt` в ветке `Samsung_Pay`, закоммитить и запушить изменения, а затем уйти на ветку `main`, то файл `s_pay.txt` не будет присутствовать. Однако, при возвращении на ветку `Samsung_Pay` файл снова будет доступен.
 
 ```git
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (samsung_pay) <-----обрати внимание на ветку
@@ -239,26 +239,26 @@ drwxr-xr-x 1 User 197121    0 Oct  4 12:30 ./
 drwxr-xr-x 1 User 197121    0 Oct  3 18:53 ../
 drwxr-xr-x 1 User 197121    0 Oct  4 12:30 .git/
 -rw-r--r-- 1 User 197121    6 Oct  3 18:53 README.md
--rw-r--r-- 1 User 197121    0 Oct  4 12:30 s_pay.txt #<-----созданный файл
+-rw-r--r-- 1 User 197121    0 Oct  4 12:30 s_pay.txt <-----Созданный файл
 
 
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (samsung_pay)
-$ git checkout main #<-----меняем ветку на main и файла s_pay.txt там не будет
+$ git checkout main <-----Меняем ветку на main и файла s_pay.txt там не будет
 Switched to branch 'main'
 Your branch is up to date with 'origin/main'.
 
-User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main)
+User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main) <----- Ветка сменилась на main
 $ ls -la
 total 19
 drwxr-xr-x 1 User 197121    0 Oct  4 12:33 ./
 drwxr-xr-x 1 User 197121    0 Oct  3 18:53 ../
 drwxr-xr-x 1 User 197121    0 Oct  4 12:33 .git/
 -rw-r--r-- 1 User 197121    6 Oct  3 18:53 README.md
-
+                                                    <----- А файла s_pay.txt здесь нет 
 
 ```
 ## Как соединить ветки?
-+ для этого необходимо встать в ту ветку куда нам нужно переместить файлы, затем вводим команду `git merge samsung_pay` 
+Для этого необходимо встать в ту ветку куда нам нужно переместить файлы, затем вводим команду `git merge samsung_pay` 
 ```git
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main)
 $ ls -la 
@@ -271,79 +271,74 @@ drwxr-xr-x 1 User 197121    0 Oct  4 12:33 .git/
 
 
 User@WIN-EHFSEGNSRM5 MINGW64 ~/Desktop/QA/GitHub/branch (main)
-$ git merge samsung_pay <----- копируем в текущую ветку файлы из другой ветки samsung_pay
+$ git merge samsung_pay <----- копируем в текущую ветку файл из другой ветки samsung_pay
 Updating 26799c8..b18ba67
 Fast-forward
- s_pay.txt | 0
+ s_pay.txt | 0 <----- в нашем примере это файл s_pay.txt
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 s_pay.txt
 
 User@WIN-EHFSEGNSRM5 MINGW64 ~/Desktop/QA/GitHub/branch (main)
-$ ls -la 
+$ ls -la <----- Смотрим что теперь в листе файлов на ветке main
 total 19
 drwxr-xr-x 1 User 197121    0 Oct  4 12:53 ./
 drwxr-xr-x 1 User 197121    0 Oct  3 18:53 ../
 drwxr-xr-x 1 User 197121    0 Oct  4 12:53 .git/
 -rw-r--r-- 1 User 197121    6 Oct  3 18:53 README.md
--rw-r--r-- 1 User 197121    0 Oct  4 12:53 s_pay.txt <-------файл s_pay.txt есть в списке
+-rw-r--r-- 1 User 197121    0 Oct  4 12:53 s_pay.txt <-------Файл s_pay.txt появился в списке после слияния
 
 ```
 ## Конфликт и его разрешение
-+ Если в одном репозитории в разных ветках есть файлы с одинаковым названием но разной информацией на конкретной строке, то при объединении этих файлов будет конфликт. Например:
+При объединении веток файлы с одинаковым названием, но разной информацией будут создавать конфликт. Например:
 ```git
-# Файл 1.txt в ветке samsung_pay содержит следующее:
-
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (samsung_pay)
 $ cat 1.txt 
-samsung_pay 
-
-# Меняем ветку:
-
+samsung_pay <-----Файл 1.txt в ветке samsung_pay содержит следующее
+```
+Меняем ветку смотрим содержание такого же файла в `main`:
+```
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (samsung_pay)
 $ git checkout main 
 Switched to branch 'main'
 
-# Такой же файл 1.txt в ветке main содержит другую информацию:
-
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main)
 $ cat 1.txt 
-main 
-
-# Слияние информации из samsung_pay в main:
-
+main <----Такой же файл 1.txt в ветке main содержит другую информацию
+```
+Слияние информации из samsung_pay в main:
+```
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main)
-$ git merge samsung_pay 
+$ git merge samsung_pay <----- комманда объединения
 Auto-merging 1.txt
-CONFLICT (content): Merge conflict in 1.txt #Указывает на конфликт в файле 1.txt
+CONFLICT (content): Merge conflict in 1.txt <----- Программа указывает на конфликт в файле 1.txt
 Automatic merge failed; fix conflicts and then commit the result.
-
-# При просмотре файла внутри будет текст указывающий на конфликт:
-
+```
+При просмотре файла внутри будет текст указывающий на конфликт:
+```
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main|MERGING)
 $ cat 1.txt 
 <<<<<<< HEAD
-main #Текущее изменение
+main <----Текущее изменение
 =======
-samsung_pay #Входящее изменение
+samsung_pay <----Входящее изменение
 >>>>>>> samsung_pay
-
-# Чтобы разрешить конфликт необходимо отредактировать документ и поместить в него нужную информацию, это могут быть тексты из веток samsung_pay или main, или что-то наиболее подходящее
-
+```
+Чтобы разрешить конфликт необходимо отредактировать документ и поместить в него нужную информацию, это могут быть тексты из веток samsung_pay или main, или что-то наиболее подходящее
+```
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main|MERGING)
 $ cat > 1.txt
-ali_pay 
-
-# Для выхода из состояния ветки merging указанного в скобках (main|MERGING) делаем коммит
-
+ali_pay <---- Исправляем текст
+```
+Для выхода из состояния ветки merging указанного в скобках (main|MERGING) делаем коммит
+```
 User@WIN MINGW64 ~/Desktop/QA/GitHub/branch (main|MERGING)
 $ git commit -am 'fix conflict' 
 warning: in the working copy of '1.txt', LF will be replaced by CRLF the next ti
 me Git touches it
 [main 1a514c0] update
 
-# Готово, информация зафиксирована
-
-User@WIN-EHFSEGNSRM5 MINGW64 ~/Desktop/QA/GitHub/branch (main)
+User@WIN-EHFSEGNSRM5 MINGW64 ~/Desktop/QA/GitHub/branch (main) <----Статус MERGING ушёл
 $ cat 1.txt 
 ali_pay
 ```
+Готово, информация зафиксирована
