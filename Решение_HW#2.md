@@ -1,4 +1,4 @@
-# GitHub. HW_2 ![OS](https://img.shields.io/badge/Windows-20H2-0014a8) ![Browser](https://img.shields.io/badge/Google_Chrome-117.0.5938.149-4285F4) ![Terminal](https://img.shields.io/badge/GitBash-2.42.0.windows.1-f14e32) ![Editor](https://img.shields.io/badge/VScode-1.81.1-0071bc)
+# HW#2:GitHub. ![OS](https://img.shields.io/badge/Windows-20H2-0014a8) ![Browser](https://img.shields.io/badge/Google_Chrome-117.0.5938.149-4285F4) ![Terminal](https://img.shields.io/badge/GitBash-2.42.0.windows.1-f14e32) ![Editor](https://img.shields.io/badge/VScode-1.81.1-0071bc)
 
 1. На локальном репозитории сделать ветки для:
 + Postman 

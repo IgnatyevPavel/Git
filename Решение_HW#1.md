@@ -1,4 +1,4 @@
-# HW#1:GIT Homework 1 ![OS](https://img.shields.io/badge/Windows-20H2-0014a8) ![Browser](https://img.shields.io/badge/Google_Chrome-117.0.5938.149-4285F4) ![Terminal](https://img.shields.io/badge/GitBash-2.42.0.windows.1-f14e32) ![Editor](https://img.shields.io/badge/VScode-1.81.1-0071bc)
+# HW#1:GIT  ![OS](https://img.shields.io/badge/Windows-20H2-0014a8) ![Browser](https://img.shields.io/badge/Google_Chrome-117.0.5938.149-4285F4) ![Terminal](https://img.shields.io/badge/GitBash-2.42.0.windows.1-f14e32) ![Editor](https://img.shields.io/badge/VScode-1.81.1-0071bc)
 
 #### Как выполнять задание?
 >Для выполнения задания у вас должен быть установлен для Windows - GitBash.
